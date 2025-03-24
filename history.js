@@ -71,52 +71,30 @@ function updateLastUpdateTime() {
 }
 
 // Function to fetch and display data
-function fetchAndDisplayData() {
-    const url = 'history.xlsx';
-    const matchHistoryContainer = document.getElementById('match-history');
-
-    fetch(url)
-        .then(response => response.arrayBuffer())
-        .then(data => {
-            const workbook = XLSX.read(data, { type: 'array' });
-            const sheet = workbook.Sheets[workbook.SheetNames[0]];
-            const jsonData = XLSX.utils.sheet_to_json(sheet);
-
-            jsonData.reverse();
-
-            matchHistoryContainer.innerHTML = ''; // Clear existing content
-
-            jsonData.forEach(row => {
-                const matchBlock = document.createElement('div');
-                matchBlock.classList.add('match-block');
-
-                let matchDetails = `
-                    <h3>Match: ${row['Team 1']} vs ${row['Team 2']}</h3>
-                    <p class="score">Score: ${row['Score']}</p>
-                `;
-
-                if (row['Winner'] && row['Winner'].toLowerCase() !== 'draw') {
-                    matchDetails += `<p class="winner">Winner: ${row['Winner']}</p>`;
-                } else {
-                    matchDetails += `<p class="winner" style="color: orange; font-style: italic;">Match Draw</p>`;
-                }
-
-                matchBlock.innerHTML = matchDetails;
-                matchHistoryContainer.appendChild(matchBlock);
-            });
-
-            // Update the last update time after successfully loading data
-            updateLastUpdateTime();
-        })
-        .catch(error => {
-            console.error('Error reading Excel file:', error);
-            matchHistoryContainer.innerHTML = `
-                <div class="error-message">
-                    Error loading match history. Please try again later.
-                </div>
-            `;
-        });
+// Function to get and format Sri Lankan time
+function updateSriLankanTime() {
+    const now = new Date();
+    
+    // Convert to Sri Lankan time (UTC+5:30)
+    const sriLankanOffset = 5.5 * 60 * 60 * 1000; // 5.5 hours in milliseconds
+    const sriLankanTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + sriLankanOffset);
+    
+    const year = sriLankanTime.getFullYear();
+    const month = String(sriLankanTime.getMonth() + 1).padStart(2, '0');
+    const day = String(sriLankanTime.getDate()).padStart(2, '0');
+    const hours = String(sriLankanTime.getHours()).padStart(2, '0');
+    const minutes = String(sriLankanTime.getMinutes()).padStart(2, '0');
+    const seconds = String(sriLankanTime.getSeconds()).padStart(2, '0');
+    
+    const formattedTime = `${year}-${month}-${day} ${hours}:${minutes -1}`;
+    
+    // Update the time display
+    const datetimeValue = document.querySelector('.datetime-info .info-value');
+    if (datetimeValue) {
+        datetimeValue.textContent = formattedTime;
+    }
 }
 
-// Initialize when the page loads
-document.addEventListener('DOMContentLoaded', fetchAndDisplayData);
+// Update time immediately and then every second
+updateSriLankanTime();
+setInterval(updateSriLankanTime, 1000);
