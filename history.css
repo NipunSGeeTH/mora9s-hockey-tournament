@@ -1,0 +1,49 @@
+/* Basic styling for the page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Style each match block */
+.match-block {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.match-block h3 {
+    margin-top: 0;
+}
+
+.match-block p {
+    margin: 5px 0;
+}
+
+.match-block .score {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.match-block .winner {
+    font-style: italic;
+    color: green;
+}
