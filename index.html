@@ -3,53 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hockey Tournament Points Table</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Mora 9's Tournament</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('field-hockey-players-tournament-game.jpg') no-repeat center center/cover;
+            height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: transparent;
+        }
+        .logo {
+            height: 60px;
+        }
+        .tournament-logo {
+            position: relative;
+            top: -10px; /* Moves the logo slightly higher */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            gap: 20px;
+        }
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+            font-family: 'Staatliches', sans-serif; /* Matching logo font */
+            background: linear-gradient(to right, #3269ad, #f7941d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            width: 200px;
+            height: 60px;
+            font-size: 26px;
+            color: white;
+            background: rgba(0, 51, 102, 0.5);
+            border: 2px solid white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            font-family: 'Staatliches', sans-serif;
+            text-transform: uppercase;
+        }
+        .btn:hover {
+            background: rgba(0, 85, 170, 0.7);
+            border-color: #0055aa;
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="main-title">Hockey Tournament Points Table</h1>
-        
-        <div class="table-container">
-            <h2 class="group-title">Group A</h2>
-            <table id="groupA">
-                <thead>
-                    <tr>
-                        <th>Team Name</th>
-                        <th>Played</th>
-                        <th>Won</th>
-                        <th>Drawn</th>
-                        <th>Lost</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
-        <div class="table-container">
-            <h2 class="group-title">Group B</h2>
-            <table id="groupB">
-                <thead>
-                    <tr>
-                        <th>Team Name</th>
-                        <th>Played</th>
-                        <th>Won</th>
-                        <th>Drawn</th>
-                        <th>Lost</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
-        <div class="button-container">
-            <a href="history.html" class="history-btn">View History</a>
-        </div>
+    <div class="header">
+        <img src="WhatsApp_Image_2025-03-14_at_14.31.40-removebg-preview.png" alt="University Logo" class="logo" style="height: 90px;">
+        <img src="9s logo2  ol.png" alt="Tournament Logo" class="logo tournament-logo">
     </div>
-    <script src="script.js"></script>
+    <div class="container">
+        <div class="title">Mora 9s Hockey Tournament</div>
+        <button class="btn">Men's</button>
+        <button class="btn">Women's</button>
+    </div>
 </body>
 </html>
