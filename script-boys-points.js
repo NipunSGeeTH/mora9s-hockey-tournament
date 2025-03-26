@@ -22,6 +22,7 @@ fetch('../pointtable_boys.xlsx')
           won: row[2],
           drawn: row[3],
           lost: row[4],
+          
           points: row[5],
           group: row[6],
         };
