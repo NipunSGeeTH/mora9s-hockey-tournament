@@ -1,3 +1,4 @@
+// Fetch the Excel file and read its contents
 fetch('pointtable_boys.xlsx')
   .then(response => {
     if (!response.ok) {
@@ -8,26 +9,21 @@ fetch('pointtable_boys.xlsx')
   })
   .then(data => {
     console.log("Data received:", data.byteLength, "bytes");
-  })
-  .catch(error => console.error("Error loading Excel file:", error));
 
-
-
-  console.log("Workbook:", workbook);
-  console.log("Sheet Name:", sheetName);
-  console.log("Raw Data:", rows);
-
-
-
-// Fetch the Excel file and read its contents
-fetch('pointtable_boys.xlsx')
-  .then(response => response.arrayBuffer()) // Read file as ArrayBuffer
-  .then(data => {
     // Parse the Excel file
     const workbook = XLSX.read(data, { type: 'array' });
     const sheetName = workbook.SheetNames[0]; // Get the first sheet
     const sheet = workbook.Sheets[sheetName];
     const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 }); // Get data as array of arrays
+
+    console.log("Workbook:", workbook);
+    console.log("Sheet Name:", sheetName);
+    console.log("Raw Data:", rows);
+
+    if (!rows || rows.length === 0) {
+      console.error("No data found in the Excel sheet!");
+      return;
+    }
 
     // Separate data by group A and B
     const groupA = [];
@@ -48,7 +44,7 @@ fetch('pointtable_boys.xlsx')
           group: row[9],
           goal_difference: row[5] - row[6], // Compute goal difference
         };
-        
+
         if (team.group === "Group A") {
           groupA.push(team);
         } else if (team.group === "Group B") {
@@ -56,6 +52,9 @@ fetch('pointtable_boys.xlsx')
         }
       }
     });
+
+    console.log("Group A Data:", groupA);
+    console.log("Group B Data:", groupB);
 
     // Sorting function
     function sortTeams(teams) {
@@ -72,7 +71,11 @@ fetch('pointtable_boys.xlsx')
 
     // Insert Group A data into the table
     const groupA_tableBody = document.querySelector('#groupA tbody');
-    groupA_tableBody.innerHTML = ''; // Clear any previous data
+    if (!groupA_tableBody) {
+      console.error("Table #groupA not found in HTML");
+      return;
+    }
+    groupA_tableBody.innerHTML = ''; // Clear previous data
     groupA.forEach(team => {
       const tr = document.createElement('tr');
       [team.name, team.played, team.won, team.drawn, team.lost, team.goal_scored, team.goal_conceded, team.goal_difference, team.penalty_points, team.points].forEach(value => {
@@ -85,7 +88,11 @@ fetch('pointtable_boys.xlsx')
 
     // Insert Group B data into the table
     const groupB_tableBody = document.querySelector('#groupB tbody');
-    groupB_tableBody.innerHTML = ''; // Clear any previous data
+    if (!groupB_tableBody) {
+      console.error("Table #groupB not found in HTML");
+      return;
+    }
+    groupB_tableBody.innerHTML = ''; // Clear previous data
     groupB.forEach(team => {
       const tr = document.createElement('tr');
       [team.name, team.played, team.won, team.drawn, team.lost, team.goal_scored, team.goal_conceded, team.goal_difference, team.penalty_points, team.points].forEach(value => {
@@ -95,4 +102,8 @@ fetch('pointtable_boys.xlsx')
       });
       groupB_tableBody.appendChild(tr);
     });
-  });
+
+    console.log("Table updated successfully!");
+
+  })
+  .catch(error => console.error("Error loading Excel file:", error));
