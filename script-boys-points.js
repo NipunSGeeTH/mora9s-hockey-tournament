@@ -1,5 +1,3 @@
-// script.js
-
 // Fetch the Excel file and read its contents
 fetch('../pointtable_boys.xlsx')
   .then(response => response.arrayBuffer()) // Read file as ArrayBuffer
@@ -22,8 +20,12 @@ fetch('../pointtable_boys.xlsx')
           won: row[2],
           drawn: row[3],
           lost: row[4],
-          points: row[5],
-          group: row[6],
+          goal_scored: row[5],
+          goal_conceded: row[6],
+          penalty_points: row[7],
+          points: row[8],
+          group: row[9],
+          goal_difference: row[5] - row[6], // Compute goal difference
         };
         
         if (team.group === "Group A") {
@@ -34,16 +36,25 @@ fetch('../pointtable_boys.xlsx')
       }
     });
 
-    // Sort teams by points (high to low)
-    groupA.sort((a, b) => b.points - a.points);
-    groupB.sort((a, b) => b.points - a.points);
+    // Sorting function
+    function sortTeams(teams) {
+      teams.sort((a, b) => {
+        if (b.points !== a.points) return b.points - a.points; // Higher points first
+        if (b.goal_difference !== a.goal_difference) return b.goal_difference - a.goal_difference; // Higher goal difference first
+        return a.penalty_points - b.penalty_points; // Lower penalty points first
+      });
+    }
+
+    // Sort teams in each group
+    sortTeams(groupA);
+    sortTeams(groupB);
 
     // Insert Group A data into the table
     const groupA_tableBody = document.querySelector('#groupA tbody');
     groupA_tableBody.innerHTML = ''; // Clear any previous data
     groupA.forEach(team => {
       const tr = document.createElement('tr');
-      Object.values(team).slice(0, 6).forEach(value => { // Skip 'group' value
+      [team.name, team.played, team.won, team.drawn, team.lost, team.goal_scored, team.goal_conceded, team.goal_difference, team.penalty_points, team.points].forEach(value => {
         const td = document.createElement('td');
         td.textContent = value;
         tr.appendChild(td);
@@ -56,11 +67,11 @@ fetch('../pointtable_boys.xlsx')
     groupB_tableBody.innerHTML = ''; // Clear any previous data
     groupB.forEach(team => {
       const tr = document.createElement('tr');
-      Object.values(team).slice(0, 6).forEach(value => { // Skip 'group' value
+      [team.name, team.played, team.won, team.drawn, team.lost, team.goal_scored, team.goal_conceded, team.goal_difference, team.penalty_points, team.points].forEach(value => {
         const td = document.createElement('td');
         td.textContent = value;
         tr.appendChild(td);
       });
       groupB_tableBody.appendChild(tr);
     });
-  })
+  });
