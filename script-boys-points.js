@@ -1,5 +1,24 @@
+fetch('pointtable_boys.xlsx')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    console.log("File loaded successfully");
+    return response.arrayBuffer();
+  })
+  .then(data => {
+    console.log("Data received:", data.byteLength, "bytes");
+  })
+  .catch(error => console.error("Error loading Excel file:", error));
+
+
+
+
+
+
+
 // Fetch the Excel file and read its contents
-fetch('../pointtable_boys.xlsx')
+fetch('pointtable_boys.xlsx')
   .then(response => response.arrayBuffer()) // Read file as ArrayBuffer
   .then(data => {
     // Parse the Excel file
