@@ -13,7 +13,9 @@ fetch('pointtable_boys.xlsx')
 
 
 
-
+  console.log("Workbook:", workbook);
+  console.log("Sheet Name:", sheetName);
+  console.log("Raw Data:", rows);
 
 
 
