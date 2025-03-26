@@ -61,7 +61,7 @@ fetch('pointtable_boys.xlsx')
       teams.sort((a, b) => {
         if (b.points !== a.points) return b.points - a.points; // Higher points first
         if (b.goal_difference !== a.goal_difference) return b.goal_difference - a.goal_difference; // Higher goal difference first
-        return b.penalty_points - a.penalty_points; // Higher penalty points first
+        return b.penalty_points - a.penalty_points; // Lower penalty points first
       });
     }
 
