@@ -78,7 +78,7 @@ fetch('pointtable_boys.xlsx')
     groupA_tableBody.innerHTML = ''; // Clear previous data
     groupA.forEach(team => {
       const tr = document.createElement('tr');
-      [team.name, team.played, team.won, team.drawn, team.lost, team.goal_scored, team.goal_conceded, team.penalty_points, team.points].forEach(value => {
+      [team.name, team.played, team.won, team.drawn, team.lost, team.points, team.goal_scored, team.goal_conceded, team.penalty_points].forEach(value => {
         const td = document.createElement('td');
         td.textContent = value;
         tr.appendChild(td);
@@ -95,7 +95,7 @@ fetch('pointtable_boys.xlsx')
     groupB_tableBody.innerHTML = ''; // Clear previous data
     groupB.forEach(team => {
       const tr = document.createElement('tr');
-      [team.name, team.played, team.won, team.drawn, team.lost, team.goal_scored, team.goal_conceded, team.penalty_points, team.points].forEach(value => {
+      [team.name, team.played, team.won, team.drawn, team.lost, team.points, team.goal_scored, team.goal_conceded, team.penalty_points].forEach(value => {
         const td = document.createElement('td');
         td.textContent = value;
         tr.appendChild(td);

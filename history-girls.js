@@ -32,7 +32,7 @@ function fetchAndDisplayData() {
                 if (row['Winner'] && row['Winner'].toLowerCase() !== 'draw') {
                     matchDetails += `<p class="winner">Winner: ${row['Winner']}</p>`;
                 } else {
-                    matchDetails += `<p class="winner" style="color: orange; font-style: italic;">Match Draw</p>`;
+                    matchDetails += `<p class="winner" style="color: orange; font-style: italic;">Match Drawn</p>`;
                 }
 
                 matchBlock.innerHTML = matchDetails;
