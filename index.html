@@ -6,14 +6,20 @@
     <title>Mora 9's Tournament</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Staatliches&display=swap');
+
+        /* Custom Font */
+        @font-face {
+            font-family: 'Futura';
+            src: url('futur.ttf') format('truetype');
+        }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-            background: url('field-hockey-players-tournament-game.jpg') no-repeat center center/cover;
+            background: url('back.jpeg') no-repeat center center/cover;
             height: 100vh;
         }
         .header {
@@ -28,7 +34,7 @@
         }
         .tournament-logo {
             position: relative;
-            top: -10px; /* Moves the logo slightly higher */
+            top: -10px;
         }
         .container {
             display: flex;
@@ -39,17 +45,16 @@
             gap: 20px;
         }
         .title {
-            font-size: 50px;
+            font-size: 100px;
             font-weight: bold;
-            font-family: 'Staatliches', sans-serif; /* Matching logo font */
-            background: linear-gradient(to right, #3269ad, #f7941d);
+            font-family: 'Bebas Neue', sans-serif; /* Stylish Tournament Font */
+            background: linear-gradient(to right, #b3b4b6, #5364d6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
-
         .btn {
             width: 200px;
             height: 60px;
@@ -77,10 +82,9 @@
         <img src="9s logo2  ol.png" alt="Tournament Logo" class="logo tournament-logo">
     </div>
     <div class="container">
-        <div class="title">Mora 9s Hockey Tournament</div>
+        <div class="title">Mora 9's 2025</div>
         <a href="/pointtable_boys.html"><button class="btn">Men's</button></a>
         <a href="/pointtable_girls.html"><button class="btn">Women's</button></a>
-
     </div>
 </body>
 </html>
