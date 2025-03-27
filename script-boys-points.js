@@ -1,5 +1,5 @@
 // Fetch the Excel file and read its contents
-fetch('pointtable_boys.xlsx')
+fetch('/pointtable_boys.xlsx')
   .then(response => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
