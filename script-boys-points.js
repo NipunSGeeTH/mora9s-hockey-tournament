@@ -43,6 +43,9 @@ fetch('pointtable_boys.xlsx')
           points: row[8],
           group: row[9],
           goal_difference: row[5] - row[6], // Compute goal difference
+          
+          points: row[5],
+          group: row[6],
         };
 
         if (team.group === "Group A") {
