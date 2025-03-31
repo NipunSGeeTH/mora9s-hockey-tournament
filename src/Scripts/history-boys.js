@@ -1,6 +1,7 @@
 // Function to fetch and read the Excel file
 function fetchAndDisplayData() {
-    const url = 'history_boys.xlsx'; // Path to your Excel file
+  
+    const url = '/src/Data_Sheets/history_boys.xlsx'; // Correct relative path
     const matchHistoryContainer = document.getElementById('match-history');
 
     // Fetch the file
